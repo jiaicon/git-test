@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>star</title>
+	<style>
+	html, body {
+		margin: 0;
+		padding: 0;
+	}
+		#canvas {
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+</body>
+<script>
+	window.onload = function() {
+		const canvas = document.getElementById('canvas');
+		canvas.width = 1200;
+		canvas.height = 800;
+
+		const context = canvas.getContext('2d');
+
+		const line = context.createLinearGradient(0, 0, 0, 800);
+		line.addColorStop(0.0, '#000');
+		line.addColorStop(1.0, '#654');
+		context.fillStyle = line;
+		context.fillRect(0, 0, 1200, 800);
+
+		// context.save();
+		// context.fillStyle = 'black';
+		// context.translate(100, 100);
+		// context.fillRect(0, 0, 100, 100);
+		// // context.translate(-100, -100); // 翻转变换效果
+		// context.restore();
+
+		// context.fillStyle = 'red';
+		// context.translate(300, 300);
+		// context.fillRect(0, 0, 100, 100);
+
+		// context.stroke();
+		for(var i = 0; i < 200; i++) {
+			start(context, Math.random() * canvas.width, Math.random() * canvas.height * 0.65)
+		}	
+
+		// context.save();
+  //       context.fillStyle = 'yellow';
+  //       context.translate(100, 100);
+  //       context.beginPath();
+  //       context.moveTo(0, 0);
+  //       for (var i = 0; i < 10; i++) {
+  //           context.lineTo(20, 20);
+  //       }
+  //       context.closePath();
+  //       context.fill();
+  //       context.restore();	
+  //       context.stroke();
+	}
+	function start(ctx, x, y) {
+		ctx.save();
+		var rotate = Math.random() * 360;
+		ctx.translate(x, y);
+		ctx.rotate(rotate * Math.PI/180);
+
+		var r = Math.random() * 5 + 5;
+		drawStar(ctx, r, r/2);
+
+		ctx.restore();
+	}
+
+	function drawStar(ctx, R, r) {
+		ctx.beginPath();
+		for(var i = 0; i < 5; i++) {
+			ctx.lineTo(Math.cos((18 + i * 72)/180 * Math.PI) * R, -Math.sin((18 + 72*i)/180 * Math.PI)*R);
+			ctx.lineTo(Math.cos((54 + i * 72)/180 * Math.PI) * r, -Math.sin((54 + 72*i)/180 * Math.PI)*r);
+		}
+
+		ctx.closePath();
+
+		ctx.fillStyle = 'yellow';
+		ctx.lineJoin = 'round';
+		ctx.fill();
+		ctx.stroke();
+	}
+</script>
+</html>

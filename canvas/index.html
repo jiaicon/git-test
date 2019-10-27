@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#my-canvas {
+			border: 1px solid #eee;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="my-canvas">
+		当前浏览器不支持Canvas，请更换浏览器后再试
+	</canvas>
+</body>
+<script>
+	window.onload = function() {
+		var canvas = document.getElementById('my-canvas');
+		canvas.width = 800;
+        canvas.height = 800;
+		var myCanvas = canvas.getContext('2d');
+
+		// myCanvas.lineWidth = 10;
+
+		// // myCanvas.beginPath();
+		// myCanvas.moveTo(0, 0);
+		// myCanvas.lineTo(500, 100);
+		// myCanvas.lineTo(0, 200);
+		// myCanvas.strokeStyle = 'red';
+		// myCanvas.stroke();
+
+		// myCanvas.beginPath();
+		// myCanvas.moveTo(0, 200);
+		// myCanvas.lineTo(500, 300);
+		// myCanvas.lineTo(0, 400);
+		// myCanvas.strokeStyle = 'green';
+		// myCanvas.stroke();
+
+		// myCanvas.beginPath();
+		// myCanvas.moveTo(0, 400);
+		// myCanvas.lineTo(500, 500);
+		// myCanvas.lineTo(0, 600);
+		// myCanvas.strokeStyle = 'blue';
+		// myCanvas.stroke();
+
+		// // 封闭的图像
+		// myCanvas.beginPath();
+		// myCanvas.lineTo(50, 300);
+		// myCanvas.lineTo(500, 300);
+
+		// myCanvas.lineTo(500, 200);
+
+		// myCanvas.lineTo(600, 350);
+
+		// myCanvas.lineTo(500, 500);
+		// myCanvas.lineTo(500, 400);
+		// myCanvas.lineTo(50, 400);
+
+		// // myCanvas.lineTo(50, 300);  // 最后一步可以省略
+
+		// myCanvas.closePath();
+
+		// myCanvas.fillStyle = 'yellow';
+		// myCanvas.strokeStyle = 'red';
+
+		// myCanvas.fill();
+		// myCanvas.stroke();
+
+		// function drawReact(ctx, x, y, width, height, borderWidth, borderColor, fillColor) {
+		// 	ctx.beginPath();
+
+		// 	ctx.moveTo(x, y);
+		// 	ctx.lineTo(x + width, y);
+		// 	ctx.lineTo(x + width, y + height);
+		// 	ctx.lineTo(x, y + height);
+
+		// 	// ctx.rect(x, y, width, height);
+		// 	// ctx.fillRect(x, y, width, height);
+		// 	// ctx.strokeRect(x, y, width, height)
+
+		// 	ctx.closePath();
+
+		// 	ctx.fillStyle = fillColor;
+		// 	ctx.strokeStyle = borderColor;
+		// 	ctx.lineWidth = borderWidth;
+
+		// 	ctx.fill();
+		// 	ctx.stroke();
+		// }
+
+		// drawReact(myCanvas, 100, 100, 300, 300, 10, 'red', 'yellow');
+		// drawReact(myCanvas, 200, 200, 300, 300, 10, 'blue', 'rgba(0, 256, 0, 0.5)');
+
+		// myCanvas.lineWidth = 10;
+		// myCanvas.strokeStyle = 'yellow';
+
+		// function drawAngel(ctx, r, R, lenX, lenY, rotate) {
+		// 	ctx.beginPath();
+		// 	for(var i = 0; i < 5; i++) {
+		// 		ctx.lineTo(Math.cos((18 + i * 72 + rotate)/180 * Math.PI) * R + lenX, -Math.sin((18 + 72*i + rotate)/180 * Math.PI)*R + lenY);
+		// 		ctx.lineTo(Math.cos((54 + i * 72 + rotate)/180 * Math.PI) * r + lenX, -Math.sin((54 + 72*i + rotate)/180 * Math.PI)*r + lenY);
+		// 	}
+
+		// 	ctx.closePath();
+		// 	ctx.stroke();
+		// }
+
+		// drawAngel(myCanvas, 100, 300, 400, 400, 30)
+	}
+</script>
+</html>

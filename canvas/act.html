@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>star</title>
+	<style>
+	html, body {
+		margin: 0;
+		padding: 0;
+	}
+		#canvas {
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+</body>
+<script>
+	window.onload = function() {
+		const canvas = document.getElementById('canvas');
+		canvas.width = 1200;
+		canvas.height = 800;
+
+		const context = canvas.getContext('2d');
+
+		context.lineWith = 2;
+		context.strokeStyle = '#000';
+
+		// context.save();
+		// context.translate(100, 200);
+		// drawRectFill(context, 400, 200, 20);
+		// context.restore();
+
+		context.save();
+		// context.beginPath();
+		context.lineWith = 4;
+		context.strokeStyle = '#000'
+		context.moveTo(0, 100);
+		context.lineTo(600, 100);
+		context.lineTo(600, 800);
+		context.restore();
+		context.save();
+		context.moveTo(0, 100);
+		context.arcTo(600, 100, 600, 600, 500);
+		context.restore();
+		context.stroke();
+	}
+	function drawRect(ctx, w, h, r) {
+		ctx.beginPath();
+		ctx.arc(w + r, r, r, 0, -90*Math.PI/180, true);
+		ctx.lineTo(r, 0);
+		ctx.arc(r, r, r, -90*Math.PI/180, Math.PI, true);
+		ctx.lineTo(0, h + r);
+		ctx.arc(r, h + r, r, Math.PI, 90*Math.PI/180, true);
+		ctx.lineTo(w + r, h + 2 * r);
+		ctx.arc(w + r, h + r, r, 90*Math.PI/180, 0, true);
+		ctx.closePath();
+		ctx.stroke();
+	}
+	function drawRectFill(ctx, w, h, r) {
+		ctx.beginPath();
+		ctx.arc(w + r, r, r, 0, -90*Math.PI/180, true);
+		ctx.lineTo(r, 0);
+		ctx.arc(r, r, r, -90*Math.PI/180, Math.PI, true);
+		ctx.lineTo(0, h + r);
+		ctx.arc(r, h + r, r, Math.PI, 90*Math.PI/180, true);
+		ctx.lineTo(w + r, h + 2 * r);
+		ctx.arc(w + r, h + r, r, 90*Math.PI/180, 0, true);
+		ctx.closePath();
+
+		ctx.fillStyle = 'yellow';
+		ctx.fill();
+		ctx.stroke();
+	}
+</script>
+</html>

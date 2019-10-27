@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>star</title>
+	<style>
+		#canvas {
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+</body>
+<script>
+	window.onload = function() {
+		const canvas = document.getElementById('canvas');
+		canvas.width = 800;
+		canvas.height = 800;
+
+		const context = canvas.getContext('2d');
+
+		context.fillStyle = 'black';
+		context.fillRect(0, 0, canvas.width, canvas.height);
+
+		for(var i = 0; i < 200; i++) {
+			var r = Math.random() * 10 + 10;
+			drawAngel(context, r/2, r, Math.random() * canvas.width, Math.random() * canvas.height, Math.random()*360);
+		}
+	}
+	
+
+	function drawAngel(ctx, r, R, lenX, lenY, rotate) {
+		ctx.beginPath();
+		for(var i = 0; i < 5; i++) {
+			ctx.lineTo(Math.cos((18 + i * 72 + rotate)/180 * Math.PI) * R + lenX, -Math.sin((18 + 72*i + rotate)/180 * Math.PI)*R + lenY);
+			ctx.lineTo(Math.cos((54 + i * 72 + rotate)/180 * Math.PI) * r + lenX, -Math.sin((54 + 72*i + rotate)/180 * Math.PI)*r + lenY);
+		}
+
+		ctx.closePath();
+
+		ctx.fillStyle = 'yellow';
+		ctx.lineJoin = 'round';
+		ctx.fill();
+		ctx.stroke();
+	}
+</script>
+</html>
