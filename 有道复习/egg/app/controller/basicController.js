@@ -1,6 +1,8 @@
 /**
  * Created by icon on 2021/3/2
  */
+'use strict';
+
 const Controller = require('egg').Controller;
 
 class BasicController extends Controller {
