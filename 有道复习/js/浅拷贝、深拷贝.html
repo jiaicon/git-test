@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  /**
+   * 浅拷贝、深拷贝的原理
+   * 按数据类型理解
+   *    （基本数据类型、引用类型）
+   *     1. 基本数据类型（存在于栈中）
+   *        比如：var a = 1;   a 和 1的都存在栈中，当使用var b = a;时，实际是为b有开辟了一处内存，互不影响。
+   *     2. 引用数据类型（名和值分别存储，名存在栈中，值存在堆中）
+   *        比如：var a = 1;   a存储在栈中，对应的是值所在的位置；1存在堆中，当使用var b = a;时，实际是b引用了a的地址
+   *
+   * */
+
+  /**
+   * 浅拷贝、深拷贝实现的不同
+   * 主要针对有数组或对象的属性
+   *
+   * 浅拷贝：引用对象的每一个属性和值（相当于只拷贝一级，深层级的引用地址）
+   *        比如：var a = {b: 1, c: 2, d: [1, 2, 3]}; aa = { b: 1, c: 2, d: 数组的地址 }
+   *        所以当aa.d改变时，a.d也发生改变
+   * 深拷贝：开辟新的栈，逐层赋值对象的所有属性及方法
+   * */
+  /**
+   * 实现
+   *
+   * */
+  const obj = {
+    a: 1,
+    b: 2,
+    c: [1, 2, 3],
+    d: {
+      a: 1,
+      b: 2,
+      c: [1, 2]
+    }
+  };
+  // 浅拷贝 1. for ... in ... 值循环第一层
+  // function simpleCopy(a) {
+  //   const d = Array.isArray(a) ? [] : {};
+  //   for (const i in a) {
+  //     d[i] = a[i];
+  //   }
+  //   return d;
+  // }
+  // const obj2 = simpleCopy(obj);
+  // console.log(obj2);
+  // obj2.c.push('1');
+  // console.log(obj2, obj); // 都发生了改变
+
+  // 浅拷贝 2. Object.assign()
+  // const obj2 = Object.assign(obj);
+  // console.log(obj2);
+  // obj2.c.d = 123;
+  // console.log(obj2, obj); // 都发生了改变
+
+  // 浅拷贝 3. 直接使用=赋值
+  // const obj2 = obj;
+  // console.log(obj2);
+  // obj2.d.c.push('2');
+  // console.log(obj2, obj); // 都发生了改变
+
+  // 深拷贝 1. 采用递归层级赋值
+  function deepClone(a) {
+    const b = Array.isArray(a) ? [] : {};
+    if (a && typeof a === 'object') {
+      for (const i in a) {
+        if (a.hasOwnProperty(i)) {
+          // 判断子元素是否为对象
+          if (typeof a[i] === 'object') {
+            b[i] = deepClone(a[i])
+          } else {
+            // 否则简单赋值
+            b[i] = a[i];
+          }
+        }
+      }
+    }
+    return b;
+  }
+  // const obj2 = deepClone(obj);
+  // console.log(obj2);
+  // obj2.c.push(111);
+  // console.log(obj2, obj); // obj未改变
+
+  // 深拷贝 2. JSON.stringify();
+  function deepClone2(a) {
+    const b = JSON.stringify(a);
+    return JSON.parse(b);
+  }
+  const obj2 = deepClone2(obj);
+  console.log(obj2);
+  obj2.c.push(111);
+  console.log(obj2, obj); // obj未改变
+
+  /**
+   * 对于数组的深拷贝
+   * 1. 使用slice(0)方法
+   * 2. 使用concat()方法
+   * */
+  const arr = [1, 2, 3, 4];
+  const arr2 = arr;
+  // arr2[2] = '111';
+  // console.log(arr2, arr); // 都发生了改变
+  const arr3 = arr.slice(0);
+  arr3[2] = '333';
+  console.log(arr3, arr); // arr未改变
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<pre id="box"></pre>
+</body>
+<script>
+  const json = {
+    a: 1,
+    b: '1',
+    v: ['1', 2, 3],
+  };
+  document.getElementById('box').innerHTML = JSON.stringify(json, null, 2);
+
+  function Cat(name) {
+    //
+    this.name=name;
+  }
+
+  Cat.prototype.say = function() {
+    return(`Hello, ${this.name}!`)
+  };
+
+  // 测试:
+  var kitty = new Cat('Kitty');
+  var doraemon = new Cat('哆啦A梦');
+  if (kitty && kitty.name === 'Kitty'
+    && kitty.say
+    && typeof kitty.say === 'function'
+    && kitty.say() === 'Hello, Kitty!'
+    && kitty.say === doraemon.say
+  ) {
+    console.log('测试通过!');
+  } else {
+    console.log('测试失败!');
+  }
+</script>
+</html>

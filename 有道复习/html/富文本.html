@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<select name="textAlign" id="textAlign" onchange="getTextAlign(this)">
+  <option value="left">left</option>
+  <option value="center">center</option>
+  <option value="right">right</option>
+</select>
+<div contenteditable="true" id="text-input">
+  <div id="placeholder">请输入内容</div>
+</div>
+</body>
+<script>
+  const context = document.getElementById('text-input');
+  ['blur', 'keyup', 'mouseup'].forEach((type) => {
+    addEvent(context, type, () => {
+      console.log(context.innerHTML);
+    })
+  });
+  function addEvent(dom, type, callback) {
+    dom.addEventListener(type, callback);
+  }
+  function getTextAlign(e) {
+    const selection = window.getSelection();
+    if (selection.focusNode) {
+      selection.focusNode.parentNode.style.textAlign = e.value;
+    }
+  }
+</script>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>cookie、sessionStorage、localStorage、session的区别</title>
+  <style>
+    body, html {
+      padding: 0;
+      margin: 0;
+    }
+    .box {
+
+    }
+    .row {
+      display: flex;
+      width: 100%;
+    }
+    .head {
+      height: 52px;
+      width: 100%;
+      line-height: 52px;
+    }
+    .block {
+      padding: 5px 10px;
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+<div class="box">
+  <div class="row head">
+    <div class="block">
+      名称
+    </div>
+    <div class="block">
+      存储大小
+    </div>
+    <div class="block">
+      有效时间
+    </div>
+    <div class="block">
+      数据交互
+    </div>
+  </div>
+  <div class="row">
+    <div class="block">
+      cookie
+    </div>
+    <div class="block">
+      <= 4k
+    </div>
+    <div class="block">
+      有过期时间，未到过期时间时，不会删除。
+    </div>
+    <div class="block">
+      可以与服务器进行交互（可以携带到服务器，服务器也可以写到浏览器）
+    </div>
+  </div>
+  <div class="row">
+    <div class="block">
+      sessionStorage
+    </div>
+    <div class="block">
+      5M
+    </div>
+    <div class="block">
+      存储在浏览器本地，随浏览器的关闭也删除
+    </div>
+    <div class="block">
+      不可与服务器端交互
+    </div>
+  </div>
+  <div class="row">
+    <div class="block">
+      localStorage
+    </div>
+    <div class="block">
+      5M
+    </div>
+    <div class="block">
+      存储在浏览器本地，不会随浏览器关闭而删除，可手动删除
+    </div>
+    <div class="block">
+      不可与服务器端交互
+    </div>
+  </div>
+</div>
+<div>session：放在server端，大小没限制</div>
+</body>
+<script>
+
+</script>
+</html>

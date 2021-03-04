@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  // 定义动物
+  function Animal() {
+    this.species = '动物';
+  }
+
+  // 定义猫
+  function Cat(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  // 不变的属性可以放在原型上
+  Cat.prototype.type = '猫科动物';
+  Cat.prototype.eat = function () {
+    console.log('会吃老鼠')
+  };
+  const cat1 = new Cat('Tom', 2);
+  console.log(cat1.name, cat1.type);
+  cat1.eat();
+
+  /*
+  * 使Cat继承Animal
+  * **/
+  // 一、构造函数绑定
+  // function Cat(name, age) {
+  //   Animal.apply(this, arguments);
+  //   this.name = name;
+  //   this.age = age;
+  // }
+  // const cat1 = new Cat('Tom', 1);
+  // console.log(cat1.species);
+
+  // 二、prototype模式
+  // // 将Cat的prototype对象指向一个Animal的实例，相当于完全删除了prototype 对象原先的值，然后赋予一个新值
+  // Cat.prototype = new Animal();
+  // // 所以需要重新设置Cat的constructor为Cat，否则会导致继承链的紊乱（cat2明明是用构造函数Cat生成的，构造函数却指向Animal）
+  // Cat.prototype.constructor = Cat;
+  // const cat2 = new Cat('Dog', 2);
+  // console.log(cat2.type); // undefined
+  // console.log(cat2.constructor === Cat.prototype.constructor);
+
+  // 三、直接继承prototype
+  // 即只继承animal的原型，这需要改造Animal
+  function AnimalChange() {}
+  AnimalChange.prototype.species = '动物';
+  Cat.prototype = AnimalChange.prototype;
+  Cat.prototype.constructor = Cat;
+  const cat3 = new Cat('Jerry', 1.5);
+  console.log(cat3.constructor);
+  // cat3.eat();
+  console.log(cat3.species);
+
+</script>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<input type="radio" name="game" value="big" checked>大
+<input type="radio" name="game" value="small">小
+<br>
+<button onclick="onSubmit()">确认</button>
+</body>
+<script>
+  /*
+  * 摇骰子的例子
+  * flag  true > 3 || false <= 3
+  * **/
+  const game = function (flag) {
+    return new Promise((resolve, reject) => {
+      const n = parseInt(Math.random() * 6 + 1);
+      setTimeout(() => {
+        if (flag) {
+          if (n > 3) {
+            resolve(n);
+          } else {
+            reject(n);
+          }
+        } else {
+          if (n <= 3) {
+            resolve(n);
+          } else {
+            reject(n);
+          }
+        }
+      }, 3000);
+    })
+  };
+  const result = async function (r) {
+    try {
+      const n = await game(r);
+      console.log(n);
+      alert('你赢了: ', n);
+    } catch (e) {
+      console.log(e);
+      alert('你输了: ', e);
+    }
+  };
+  const onSubmit = () => {
+    const radios = document.getElementsByName('game');
+    radios.forEach(item => {
+      if (item.checked === true) {
+        result(item.value === 'big');
+      }
+    })
+  }
+</script>
+</html>

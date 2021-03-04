@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  console.log('-------------Set-------------');
+  // set是一维数组
+  // 新建
+  const set1 = new Set(); // 空set
+  const set2 = new Set([1, 2, 3, 4]); // 包含1/2/3/4
+  console.log(set1, set2); // [] [1, 2, 3, 4]
+  /*
+  * 用法
+  * 1. 过滤重复元素
+  * 2. 添加新元素
+  * 2. 删除元素
+  * **/
+  // 1
+  const set3 = new Set([1, 2, 3, 2, '3', 4]); // [1, 2, 3, '3', 4]
+
+  // 2
+  const set4 = new Set([1, 2, 3]);
+  set4.add(4);
+  console.log(set4); // 1, 2, 3, 4
+
+  // 3
+  const set5 = new Set([1, 2, 3, 4]);
+  set5.delete(4); // 1, 2, 3
+
+  console.log('------------Map-------------');
+  // Map是一组二维数组，具有查找速度快的优势
+  // 新建
+  // 初始化时必须是空、或者二维数组
+  const map1 = new Map();
+  const map2 = new Map([['a', 1], ['b', 2]]);
+  /*
+  * 用法
+  * 1. 获取某一项
+  * 2. 设置某一项
+  * 3. 是否存在某一项
+  * 4. 删除某一项
+  * 5. 获取不存在的项
+  * **/
+  const newMap = new Map([['a0', 1], ['a2', 2], ['a3', 3]]);
+
+  // 1
+  console.log(newMap.get('a2')); // 2
+  // 2
+  newMap.set('a2', 'a2');
+  console.log(newMap); // [['a0', 1], ['a2', 'a2], ['a3', 3]]
+  // 3
+  console.log(newMap.has('a2')); // true
+  // 4
+  newMap.delete('a2');
+  console.log(newMap); // [['a0', 1], ['a3', 3]]
+  // 5
+  console.log(newMap.get('a4')); // undefined
+</script>
+</html>

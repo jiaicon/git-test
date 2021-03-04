@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  /*
+  * 数组的一些新的方法
+  * **/
+  const arr1 = [1, 2, 3, 4, 5];
+
+  const arr2 = new Array([
+    {
+      key: 1,
+      value: 1,
+    },
+    {
+      key: 2,
+      value: 2,
+    },{
+      key: 3,
+      value: 3,
+    },
+
+  ]);
+  /*
+  * 1. reduce
+  * 用来计算数组的每一项
+  * var result = arr.reduce(function(pre, cur, index, arr){}, init)
+  *
+  * init: 初始的值
+  * 原理: 初始pre为init；
+    第一次循环使用init跟cur比较，得出结果作为pre；
+    第二次循环使用第一次结果跟cur比较；
+  * **/
+  const reduce = arr1.reduce((pre, cur, index, arr) => {
+    // 计算数组和
+    // return pre + cur;
+    // 返回最大值
+    return Math.max(pre, cur);
+  }, 0);
+  console.log(reduce);
+
+  /*
+  * 2. every
+  * 用来判断数组中是否每一项都符合条件
+  * **/
+  const isEvery = arr1.every((item, index, arr) => {
+    return item > 0;
+  });
+  console.log(isEvery); // true
+
+  /*
+  * 3. some
+  * 用来判断数组中是否有满足的项
+  * **/
+  const isSome = arr1.some((item, index, arr) => {
+    return item > 4;
+  });
+  console.log(isSome); // true
+
+  /*
+  * 4. filter
+  * 用来返回数组中满足条件的项
+  * **/
+
+  /*
+  * 5. find
+  * 用来返回数组中第一个满足条件的项
+  * **/
+</script>
+</html>

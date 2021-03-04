@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>async await</title>
+</head>
+<body>
+
+</body>
+<script>
+  const p1 = function () {
+    return new Promise(resolve => {
+      resolve(1111);
+    })
+  };
+  const p2 = function () {
+    return new Promise(resolve => {
+      setTimeout(() =>{
+        resolve(2222);
+      }, 3000)
+    })
+  };
+  const t = function () {
+    setTimeout(() => {
+      console.log(123);
+    }, 1000)
+  };
+
+  const fn = async function () {
+    console.log('before timeout');
+    setTimeout(() => {
+      console.log('timeout')
+    }, 2000);
+    console.log('after timeout');
+    await t();
+    const r2 = await p2();
+    const r1 = await p1();
+    console.log('next');
+    console.log(r1);
+    console.log(r2);
+    console.log('finally')
+  };
+  fn();
+</script>
+</html>
