@@ -6,6 +6,7 @@ const BasicController = require('./basicController');
 class UserController extends BasicController {
   async login() {
     try {
+      console.log(this.ctx.request.body)
       this.ctx.validate({
         name: {
           type: 'string',

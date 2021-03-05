@@ -3,8 +3,10 @@
  */
 import React, {useEffect} from 'react';
 import request from '@/utils/request';
+import { withRouter } from 'react-router-dom'
 import { Card, Form, Input, Button } from 'antd';
-import BGParticle from './../../utils/BGParticle'
+import BGParticle from './../../utils/BGParticle';
+const bgImg = require('./bg1.jpg');
 
 const layout = {
   labelCol: { span: 4 },
@@ -13,15 +15,16 @@ const layout = {
 const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
-const Index = () => {
+const Index = (props) => {
   const onFinish = (values) => {
-    console.log('Success:', values);
     request({
       method: 'POST',
       url: `/api/login`,
       data: values,
     }).then(res => {
-      console.log(res);
+      if (res) {
+        props.history.replace('/admin/user');
+      }
     }).catch(e => {
       console.log(e);
     });
@@ -89,7 +92,7 @@ const styles = {
     left: '0',
     width: '100vw',
     height: '100vh',
-    backgroundImage: 'url(https://github.com/zhangZhiHao1996/image-store/blob/master/react-admin-master/bg1.jpg?raw=true)',
+    backgroundImage: `url(${bgImg})`,
     backgroundSize: '100% 100%',
     transition:'all .5s'
   },
@@ -104,5 +107,5 @@ const styles = {
   }
 };
 
-export default Index;
+export default withRouter(Index);
 
