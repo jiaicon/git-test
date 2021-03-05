@@ -18,12 +18,16 @@ exports.logger = {
 
 exports.validate = {
   enable: true,
-    package: 'egg-validate'
+  package: 'egg-validate',
 };
 
 exports.nunjucks = {
   enable: true,
   package: 'egg-view-nunjucks',
+};
+exports.ejs = {
+  enable: true,
+  package: 'egg-view-ejs',
 };
 
 exports.view = {

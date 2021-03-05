@@ -14,6 +14,7 @@
     "egg-sequelize": "^6.0.0",
     "egg-validate": "^2.0.2",
     "egg-view": "^2.1.3",
+    "egg-view-ejs": "^2.0.1",
     "egg-view-nunjucks": "^2.3.0",
     "moment": "^2.29.1",
     "mysql2": "^2.2.5",
@@ -34,7 +35,7 @@
   },
   "scripts": {
     "start-origin": "egg-scripts start --daemon --title=egg-server-egg",
-    "start": "egg-scripts start --daemon --title=egg-server-egg --ignore-stderr",
+    "start": "react-app-rewired start",
     "stop": "egg-scripts stop --title=egg-server-egg",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",

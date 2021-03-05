@@ -11,10 +11,10 @@ class HomeController extends Controller {
     });
   }
   async home() {
+    const { apiHost } = this.app.config;
     await this.ctx.render('dist/index.html', {
-      context: {
-        user: this.ctx.session.userInfo,
-      },
+      context: JSON.stringify(this.ctx.session.userInfo || null),
+      apiHost,
     });
   }
 }

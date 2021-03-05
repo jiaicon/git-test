@@ -22,7 +22,7 @@ exports.sequelize = {
   password: 'root', // 数据库密码
   define: { // model的全局配置
     // timestamps: true, // 添加create,update,delete时间戳
-    timestamps: false,  // 去除createAt updateAt
+    timestamps: false, // 去除createAt updateAt
     paranoid: false, // 添加软删除
     freezeTableName: true, // 防止修改表名为复数
     underscored: false, // 防止驼峰式字段被默认转为下划线
@@ -37,5 +37,9 @@ exports.sequelize = {
       return next();
     },
   },
+};
+
+exports.apiHost = {
+  v1: 'http://127.0.0.1:7001/api',
 };
 
