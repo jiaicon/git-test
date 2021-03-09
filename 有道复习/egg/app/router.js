@@ -20,5 +20,5 @@ module.exports = app => {
   router.get('/api/user', controller.userController.info);
 
   // router.get('/', '/*', controller.home.index);
-  router.get('/admin', '/*', controller.home.home);
+  router.get('/admin', controller.home.home);
 };

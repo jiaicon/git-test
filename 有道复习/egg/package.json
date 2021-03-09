@@ -35,7 +35,7 @@
   },
   "scripts": {
     "start-origin": "egg-scripts start --daemon --title=egg-server-egg",
-    "start": "react-app-rewired start",
+    "start": "egg-scripts start --daemon --title=egg-server-egg --ignore-stderr",
     "stop": "egg-scripts stop --title=egg-server-egg",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",

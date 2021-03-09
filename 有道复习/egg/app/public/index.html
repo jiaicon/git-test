@@ -11,10 +11,7 @@
   <title>React App</title>
   <link href="/static/css/main.68e616bb.chunk.css" rel="stylesheet">
 </head>
-<script>
-  window.userInfo = JSON.parse({{ context | dump | safe }} || null);
-  window.apiHost = {{ apiHost }};
-</script>
+<script>window.userInfo = {}, window.apiHost = "http://localhost:7001/api"</script>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root"></div>

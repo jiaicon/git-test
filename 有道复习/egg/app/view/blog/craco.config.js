@@ -17,8 +17,8 @@ module.exports = {
   ],
   webpack: {
     configure: (webpackConfig, { env, paths }) => {
-      webpackConfig.output.path = path.resolve(__dirname, './../dist1'); //ts和less编译后的文件
-      paths.appBuild = path.resolve(__dirname, './../dist1'); //public中的文件
+      webpackConfig.output.path = path.resolve(__dirname, './../dist'); //ts和less编译后的文件
+      paths.appBuild = path.resolve(__dirname, './../dist'); //public中的文件
       return webpackConfig;
     },
     alias: {
