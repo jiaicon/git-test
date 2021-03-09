@@ -2,9 +2,9 @@ logs/
 npm-debug.log
 yarn-error.log
 node_modules/
-blog/
-dist/
-build/
+# blog/
+# dist/
+# build/
 package-lock.json
 yarn.lock
 coverage/
