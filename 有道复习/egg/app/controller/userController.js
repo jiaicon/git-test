@@ -1,12 +1,13 @@
 /**
  * Created by icon on 2021/3/3
  */
+'use strict';
+
 const BasicController = require('./basicController');
 
 class UserController extends BasicController {
   async login() {
     try {
-      console.log(this.ctx.request.body)
       this.ctx.validate({
         name: {
           type: 'string',
@@ -16,18 +17,18 @@ class UserController extends BasicController {
           type: 'string',
           required: true,
         },
-      })
+      });
     } catch (e) {
-      return this.fail(e.errors, 500, e.message)
+      return this.fail(e.errors, 500, e.message);
     }
-    const { name, password } = this.ctx.request.body;
+    const {name, password} = this.ctx.request.body;
     try {
       const user = await this.service.userService.login({name, password});
       if (user) {
         return this.success(user, 0, '获取成功');
       }
       return this.fail(null, 'error', '账号或密码错误')
-    } catch(e) {
+    } catch (e) {
       return this.fail(null, 500, e.message)
     }
   }
@@ -51,15 +52,37 @@ class UserController extends BasicController {
     } catch (e) {
       return this.fail(e.errors, 500, e.message)
     }
-    const { name, password, phone } = this.ctx.request.body;
+    const {name, password, phone} = this.ctx.request.body;
     try {
       const user = await this.service.userService.register({name, password, phone});
       if (user) {
         return this.success(user, 0, '新建用户成功');
       }
       return this.fail(null, 401, '新建用户失败')
-    } catch(e) {
+    } catch (e) {
       return this.fail(null, 500, e.message)
+    }
+  }
+
+  async update() {
+    const { ctx, service } = this;
+    try {
+      const { id } = ctx.params;
+      if (!id || typeof Number(id) !== 'number' || isNaN(id)) {
+        throw new Error('Missing id is required');
+      }
+    } catch (e) {
+      return this.fail(e.errors, 500, e.message);
+    }
+    const { password, phone } = ctx.request.body;
+    try {
+      const user = await service.userService.update({ phone, password, id: ctx.params.id });
+      if (user) {
+        return this.success(user, 0, '修改成功');
+      }
+      return this.fail(null, 401, '修改失败');
+    } catch (e) {
+      return this.fail(null, 500, e.message);
     }
   }
 

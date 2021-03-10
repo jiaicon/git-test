@@ -5,10 +5,11 @@
  * 2. 使用http-proxy-middleware。
  */
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const config = require('./config/config');
 
 module.exports = function (app) {
   app.use(createProxyMiddleware('/api', {
-    target: 'http://localhost:7001',
+    target: config.apiHost,
     changeOrigin: true
   }))
 };

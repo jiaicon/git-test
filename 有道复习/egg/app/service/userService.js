@@ -47,6 +47,21 @@ class UserService extends Service {
       throw e;
     }
   }
+  async update(data) {
+    const { ctx } = this;
+    const { id, ...rest } = data;
+    try {
+      const user = await ctx.model.User.findByPk(id);
+      if (!user) {
+        return null;
+      }
+      return await user.update({
+        ...rest,
+      });
+    } catch(e) {
+      throw e;
+    }
+  }
 }
 
 module.exports = UserService;

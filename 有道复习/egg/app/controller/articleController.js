@@ -10,7 +10,18 @@ class ArticleController extends BasicController {
   // 获取
   async list() {
     const {ctx} = this;
-    const query = { id: toInt(ctx.query.id), limit: toInt(ctx.query.limit), offset: toInt(ctx.query.offset) };
+    const query = { id: toInt(ctx.params.id), limit: toInt(ctx.query.limit), offset: toInt(ctx.query.offset) };
+    try {
+      const data = await this.service.articleService.getArticle(query);
+      return this.success(data, 0, '获取成功')
+    } catch(e) {
+      return this.fail(e.message, 0, '获取失败')
+    }
+  }
+  // 查看一个
+  async view() {
+    const {ctx} = this;
+    const query = { id: toInt(ctx.params.id) };
     try {
       const data = await this.service.articleService.getArticle(query);
       return this.success(data, 0, '获取成功')
@@ -24,8 +35,8 @@ class ArticleController extends BasicController {
     const {ctx} = this;
     const data = ctx.request.body;
     try {
-      const data = await this.service.articleService.createArticle(data);
-      return this.success(data, 0, '新建成功')
+      const res = await this.service.articleService.createArticle(data);
+      return this.success(res, 0, '新建成功')
     } catch(e) {
       return this.fail(e.message, 0, '新建失败')
     }
@@ -35,8 +46,9 @@ class ArticleController extends BasicController {
     const {ctx} = this;
     const data = ctx.request.body;
     try {
-      const data = await this.service.articleService.updateArticle(data);
-      return this.success(data, 0, '修改成功')
+      data.id = toInt(ctx.params.id);
+      const res = await this.service.articleService.updateArticle(data);
+      return this.success(res, 0, '修改成功')
     } catch(e) {
       return this.fail(e.message, 0, '修改失败')
     }

@@ -34,10 +34,10 @@ module.exports = appInfo => {
     },
   };
 
-  config.cors = {
-    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
-    origin: '*',
-  };
+  // config.cors = {
+  //   allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
+  //   origin: '*',
+  // };
 
   config.proxy = true;
   config.session = {

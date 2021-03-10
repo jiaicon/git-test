@@ -14,10 +14,9 @@ class uploadController extends BasicController {
   async upload_img() {
     const { url, error_msg } = await this.upload('img');
     if (url) {
-      await this.fail(url, 0, error_msg);
-    } else {
-      await this.success(null, 500, '上传失败');
+      return await this.success(url, 0, error_msg);
     }
+    return await this.fail(null, 500, '上传失败');
   }
   async upload_file() {
     const { url, error_msg } = await this.upload('file');
