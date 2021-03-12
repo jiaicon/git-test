@@ -55,10 +55,10 @@ class ArticleController extends BasicController {
   }
   // 删除
   async destroy() {
-    const {ctx} = this;
-    const data = ctx.request.body;
+    const { ctx } = this;
+    const id = ctx.params.id;
     try {
-      await this.service.articleService.destroyArticle(data);
+      await this.service.articleService.destroyArticle(id);
       return this.success(null, 0, '删除成功')
     } catch(e) {
       return this.fail(e.message, 0, '删除失败')

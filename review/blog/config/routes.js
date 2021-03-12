@@ -4,6 +4,10 @@ export default [
     component: '../layouts/BlankLayout',
     routes: [
       {
+        path: '/view/:id',
+        component: './Article/h5',
+      },
+      {
         path: '/user',
         component: '../layouts/UserLayout',
         routes: [

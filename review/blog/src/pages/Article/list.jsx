@@ -2,14 +2,25 @@
  * Created by icon on 2021/3/11
  */
 import React, {useEffect} from 'react';
-import { Card, Table, Space } from 'antd';
+import { Card, Table, Space, Popconfirm, message, Button } from 'antd';
 import { Link } from 'umi';
 import { useRequest } from 'ahooks';
-import { getArticle } from './services';
+import { getArticle, deleteArticle } from './services';
 
 const Index = () => {
   const { run, data=[], loading } = useRequest(getArticle, {
     manual: true,
+  });
+  const { run: deleteThis } = useRequest(deleteArticle, {
+    manual: true,
+    onSuccess: (r) => {
+      if (r) {
+        message.success('删除成功');
+        run();
+      } else {
+        message.success('删除失败');
+      }
+    }
   });
   useEffect(() => {
     run();
@@ -17,6 +28,10 @@ const Index = () => {
 
     }
   }, []);
+  const confirm = (id) => {
+    if (!id) return;
+    deleteThis(id);
+  };
   const columns = [
     {
       title: 'id',
@@ -34,7 +49,15 @@ const Index = () => {
       title: '操作',
       key: 'operate',
       render: (d, r) => (<Space size="middle">
-        <a>删除</a>
+        <Popconfirm
+          placement="top"
+          title={'您确定要删除吗？'}
+          onConfirm={() => {confirm(r.id)}}
+          okText="确定"
+          cancelText="取消"
+        >
+          <a>删除</a>
+        </Popconfirm>
         <Link to={`/article/update/${r.id}`} className="ant-dropdown-link">
           编辑
         </Link>

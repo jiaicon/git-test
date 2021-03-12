@@ -43,8 +43,7 @@ class ArticleService extends Service {
       throw e;
     }
   }
-  async destroyArticle(data) {
-    const { id } = data;
+  async destroyArticle(id) {
     const { ctx } = this;
     try {
       const article = await ctx.model.Article.findByPk(id);

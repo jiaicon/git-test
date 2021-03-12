@@ -63,3 +63,18 @@ export async function updateArticle(values) {
   })
 }
 
+export async function deleteArticle(id) {
+  return new Promise((resolve, reject) => {
+    request(`/api/article/destroy/${id}`, {
+      method: 'DELETE',
+    }).then(response => {
+      const { status, data, msg } = response;
+      if (status === 0) {
+        resolve(true)
+      } else {
+        reject(msg)
+      }
+    })
+  })
+}
+
