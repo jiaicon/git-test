@@ -26,20 +26,19 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
-  config.security = {
+  exports.security = {
     csrf: {
-      useSession: true, // 默认为 false，当设置为 true 时，将会把 csrf token 保存到 Session 中
-      cookieName: 'csrfToken', // Cookie 中的字段名，默认为 csrfToken
-      sessionName: 'csrfToken', // Session 中的字段名，默认为 csrfToken
+      enable: false,
+      ignoreJSON: true,
     },
+    // 允许访问接口的白名单
+    domainWhiteList: [ '*' ], // ['http://localhost:8080']
   };
 
-  // config.cors = {
-  //   allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
-  //   origin: '*',
-  // };
-
-  config.proxy = true;
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
+  };
   config.session = {
     key: 'SESSION_ID', // 设置 Session cookies 里面的 key
     maxAge: 24 * 3600 * 1000, // 1 天
@@ -56,6 +55,10 @@ module.exports = appInfo => {
       '.njk': 'nunjucks',
       '.html': 'nunjucks',
     },
+  };
+  config.jwt = {
+    secret: '19940401',
+    expiresIn: '1800s',
   };
 
   return {

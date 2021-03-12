@@ -21,15 +21,15 @@ class UserController extends BasicController {
     } catch (e) {
       return this.fail(e.errors, 500, e.message);
     }
-    const {name, password} = this.ctx.request.body;
+    const { name, password } = this.ctx.request.body;
     try {
-      const user = await this.service.userService.login({name, password});
+      const user = await this.service.userService.login({ name, password });
       if (user) {
         return this.success(user, 0, '获取成功');
       }
-      return this.fail(null, 'error', '账号或密码错误')
+      return this.fail(null, 'error', '账号或密码错误');
     } catch (e) {
-      return this.fail(null, 500, e.message)
+      return this.fail(null, 500, e.message);
     }
   }
 
@@ -88,9 +88,23 @@ class UserController extends BasicController {
 
   async info() {
     try {
-      return this.success(this.ctx.session.userInfo, 0, '获取成功')
+      return this.success(this.ctx.session.userInfo, 0, '获取成功');
     } catch (e) {
-      return this.fail(null, 500, e.message)
+      return this.fail(null, 500, e.message);
+    }
+  }
+
+  async currentUser() {
+    const token = this.ctx.request.header.authorization;
+
+    try {
+      const user = await this.service.userService.getByToken(token);
+      if (user) {
+        return await this.success(user, 0, '获取成功');
+      }
+      return await this.fail(null, 500, '获取失败');
+    } catch (e) {
+      return await this.fail(null, 500, e.message);
     }
   }
 }

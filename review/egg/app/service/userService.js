@@ -16,18 +16,34 @@ class UserService extends Service {
       throw e;
     }
   }
-  async login(data) {
+  async getByToken(token) {
     const { ctx } = this;
     try {
-      const user = await ctx.model.User.findAll({
-        where: data
+      return await ctx.model.User.findOne({ where: { token } });
+    } catch (e) {
+      throw e;
+    }
+  }
+  async login(data) {
+    const { ctx } = this;
+    const { name, password } = data;
+    try {
+      const user = await ctx.model.User.findOne({
+        where: { name },
       });
-      if (user.length) {
+      if (user && user.password === password) {
+        const token = this.ctx.app.jwt.sign({
+          name: user.name,
+          password: user.password,
+        }, this.app.config.jwt.secret);
+        if (user.update({ token })) {
+          return user;
+        }
         ctx.session.userInfo = user[0];
-        return user[0];
+        return user;
       }
       return null;
-    } catch(e) {
+    } catch (e) {
       throw e;
     }
   }

@@ -1,16 +1,12 @@
 /**
  * Created by icon on 2021/3/2
  */
+'use strict';
+
 const path = require('path');
 
 exports.logger = {
   dir: path.join(__dirname, '../logs'),
-};
-
-exports.security = {
-  csrf: {
-    enable: false,
-  },
 };
 
 exports.sequelize = {
@@ -21,11 +17,13 @@ exports.sequelize = {
   username: 'root', // 数据库用户名
   password: 'root', // 数据库密码
   define: { // model的全局配置
-    // timestamps: true, // 添加create,update,delete时间戳
-    timestamps: false, // 去除createAt updateAt
+    timestamps: true, // 添加create,update,delete时间戳
+    // timestamps: false, // 去除createAt updateAt
     paranoid: false, // 添加软删除
     freezeTableName: true, // 防止修改表名为复数
     underscored: false, // 防止驼峰式字段被默认转为下划线
+    createdAt: 'created_at', // 自定义字段名，默认为'createdAt'，将其改为'created_at'
+    updatedAt: 'updated_at',
   },
   timezone: '+8:00', // 由于orm用的UTC时间，这里必须加上东八区，否则取出来的时间相差8小时
   dialectOptions: { // 让读取date类型数据时返回字符串而不是UTC时间
@@ -42,4 +40,3 @@ exports.sequelize = {
 exports.apiHost = {
   v1: 'http://127.0.0.1:7001/api',
 };
-
