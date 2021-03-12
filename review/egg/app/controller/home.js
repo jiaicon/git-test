@@ -12,7 +12,7 @@ class HomeController extends Controller {
   }
   async home() {
     const { apiHost } = this.app.config;
-    await this.ctx.render('dist/index.html', {
+    await this.ctx.render('index.html', {
       context: JSON.stringify(this.ctx.session.userInfo || null),
       apiHost: JSON.stringify(apiHost || null),
     });
