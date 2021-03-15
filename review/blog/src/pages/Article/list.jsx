@@ -7,7 +7,8 @@ import { Link } from 'umi';
 import { useRequest } from 'ahooks';
 import { getArticle, deleteArticle } from './services';
 
-var QRCode = require('qrcode.react');
+const qrImg = require('./qrcode.png');
+const QRCode = require('qrcode.react');
 const Index = () => {
   const [modal, setModal] = useState({
     visible: false,
@@ -73,7 +74,8 @@ const Index = () => {
           width={20}
           height={20}
           preview={false}
-          src="./qrcode.png"
+          src={qrImg}
+          style={{cursor: 'pointer'}}
           onClick={() => setModal({
             visible: true,
             src: `${window.location.protocol}//${window.location.host}/view/${r.id}`
@@ -107,6 +109,7 @@ const Index = () => {
           visible: false,
           src: ''
         })}
+        width={'auto'}
         centered
         visible={modal.visible}
       >
