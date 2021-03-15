@@ -49,6 +49,9 @@ const Index = () => {
       title: '操作',
       key: 'operate',
       render: (d, r) => (<Space size="middle">
+        <Link to={`/article/view/${r.id}`} className="ant-dropdown-link">
+          查看
+        </Link>
         <Popconfirm
           placement="top"
           title={'您确定要删除吗？'}

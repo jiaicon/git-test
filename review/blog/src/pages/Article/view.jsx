@@ -11,8 +11,9 @@ var QRCode = require('qrcode.react');
 const Index = (props) => {
   const { run, data, loading } = useRequest(articleInfo, {
     manual: true,
-    onSuccess() {
-      // 生成二维码
+    onSuccess(res) {
+      document.title=res.title;
+        // 生成二维码
       console.log(`${window.location.protocol}//${window.location.host}`)
     }
   });

@@ -53,4 +53,6 @@ export default {
   'menu.article': '文章',
   'menu.article.list': '列表',
   'menu.article.create': '新建',
+  'menu.user': '用户管理',
+  'menu.user.info': '个人信息管理',
 };

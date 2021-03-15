@@ -13,8 +13,9 @@ const Index = (props) => {
   const [ua, setUa] = useState('pc');
   const { run, data, loading } = useRequest(articleInfo, {
     manual: true,
-    onSuccess() {
+    onSuccess(result) {
       // 生成二维码
+      document.title=result.title;
       console.log(`${window.location.protocol}//${window.location.host}`)
     }
   });
@@ -28,19 +29,6 @@ const Index = (props) => {
   }, []);
   const judgeUa = () => {
     setUa(browserRedirect())
-  };
-  //模拟a标签href下载
-  const downLoad = (url) => {
-    let a = document.createElement("a");
-    a.download = '';// 设置下载的文件名，默认是'下载'
-    a.href = url;
-    document.body.appendChild(a);
-    a.click();
-    a.remove(); // 下载之后把创建的元素删除
-  };
-  // 保存成png格式的图片
-  const saveAsPNG = (canvas) => {
-    return canvas.toDataURL("image/png");
   };
   if (loading) return null;
   return (

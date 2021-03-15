@@ -53,4 +53,7 @@ export default {
   'menu.article': 'article',
   'menu.article.list': 'list',
   'menu.article.create': 'create',
+
+  'menu.user': 'user',
+  'menu.user.info': 'personal info',
 };

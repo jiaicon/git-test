@@ -10,7 +10,19 @@ export default [
       {
         path: '/user',
         component: '../layouts/UserLayout',
+        name: 'user',
         routes: [
+          {
+            path: '/user',
+            redirect: '/user/info',
+          },
+          {
+            path: '/user/info',
+            name: 'info',
+            icon: 'smile',
+            authority: ['admin'],
+            component: './User/info',
+          },
           {
             name: 'login',
             path: '/user/login',
@@ -71,6 +83,24 @@ export default [
                     authority: ['admin'],
                   }
                 ]
+              },
+              {
+                path: '/users',
+                name: 'user',
+                icon: 'user',
+                routes: [
+                  {
+                    path: '/users',
+                    redirect: '/users/info',
+                  },
+                  {
+                    path: '/users/info',
+                    name: 'info',
+                    icon: 'smile',
+                    authority: ['admin'],
+                    component: './User/info',
+                  },
+                ],
               },
               {
                 component: './404',

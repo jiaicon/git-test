@@ -3,6 +3,7 @@
  */
 import React, {useEffect, useState, useRef} from 'react';
 import { Card, Button, Input, message } from 'antd';
+import { MinusOutlined } from '@ant-design/icons';
 import { useRequest } from 'ahooks';
 import uploadImage from '@/utils/uploadImage';
 import ReactQuill from 'react-quill';
@@ -28,9 +29,9 @@ const Update = (props) => {
   const { run, data, loading } = useRequest(articleInfo, {
     manual: true,
     onSuccess: (result) => {
-      console.log(result);
       if (result) {
         titleRef.current.state.value = result.title;
+        document.title=result.title;
         setValue(result.content);
       }
     }
@@ -63,7 +64,7 @@ const Update = (props) => {
       container: [
         [{ 'size': ['small', false, 'large', 'huge'] }], // custom dropdown
         [{ 'font': [] }],
-        [{ 'header': 1 }, { 'header': 2 }],        // custom button values
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],        // custom button values
         ['bold', 'italic', 'underline', 'strike'],    // toggled buttons
         [{ 'align': [] }],
         [{ 'indent': '-1' }, { 'indent': '+1' }],     // outdent/indent
@@ -74,7 +75,7 @@ const Update = (props) => {
         [{ 'list': 'ordered' }, { 'list': 'bullet' }],
         [{ 'color': [] }, { 'background': [] }],
         ['image', 'video', 'link'],
-
+        [{ 'line': <MinusOutlined /> }],
         ['clean', ],
       ],
       handlers: {
@@ -132,6 +133,7 @@ const Update = (props) => {
         modules={{...modules,}}
         formats={formats}
         className="ql-editor"
+        style={{backgroundColor: '#f5f5d5'}}
       />
       <Button onClick={submit}>提交</Button>
     </Card>

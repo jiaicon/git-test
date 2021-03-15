@@ -4,6 +4,7 @@ html,
 body,
 #root {
   height: 100%;
+  font-size: 60%;
 }
 
 .colorWeak {
@@ -52,3 +53,29 @@ ol {
     min-height: 100vh;
   }
 }
+
+@media (max-width: 30rem)  {
+  body {
+    font-size: 60%;
+  }
+}
+
+.ql-container.ql-snow {
+  font-size: 1.6rem;
+  line-height: 220%;
+  color: rgb(17, 17, 17);
+  p {
+    margin-top: 1em;
+    line-height: 180%;
+    margin-left: .8em;
+  }
+  li {
+    color: rgb(0, 0, 0);
+    font-size: 2.1rem;
+    line-height: 1.35rem;
+  }
+  pre.ql-syntax {
+    letter-spacing: 0.5px;
+  }
+}
+
