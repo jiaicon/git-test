@@ -19,6 +19,7 @@ const Update = (props) => {
     manual: true,
     onSuccess: (result, params) => {
       if (result) {
+        run(props.match.params.id);
         message.success('修改成功')
       } else {
         message.error('修改失败')
