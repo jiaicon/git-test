@@ -1,13 +1,18 @@
 /**
  * Created by icon on 2021/3/11
  */
-import React, {useEffect} from 'react';
-import { Card, Table, Space, Popconfirm, message, Button } from 'antd';
+import React, {useEffect, useState} from 'react';
+import { Card, Table, Space, Popconfirm, message, Image, Modal } from 'antd';
 import { Link } from 'umi';
 import { useRequest } from 'ahooks';
 import { getArticle, deleteArticle } from './services';
 
+var QRCode = require('qrcode.react');
 const Index = () => {
+  const [modal, setModal] = useState({
+    visible: false,
+    src: ''
+  });
   const { run, data=[], loading } = useRequest(getArticle, {
     manual: true,
   });
@@ -64,6 +69,16 @@ const Index = () => {
         <Link to={`/article/update/${r.id}`} className="ant-dropdown-link">
           编辑
         </Link>
+        <Image
+          width={20}
+          height={20}
+          preview={false}
+          src="./qrcode.png"
+          onClick={() => setModal({
+            visible: true,
+            src: `${window.location.protocol}//${window.location.host}/view/${r.id}`
+          })}
+        />
       </Space>),
     },
   ];
@@ -86,6 +101,21 @@ const Index = () => {
         loading={loading}
         dataSource={data}
       />
+      <Modal
+        footer={false}
+        onCancel={() => setModal({
+          visible: false,
+          src: ''
+        })}
+        centered
+        visible={modal.visible}
+      >
+        <QRCode
+          id={'qrcode'}
+          size={200}
+          value={modal.src}
+        />
+      </Modal>
     </Card>
   )
 };

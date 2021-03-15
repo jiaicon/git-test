@@ -46,12 +46,12 @@ const Index = (props) => {
       <div className="ql-container ql-snow">
         <div className="ql-editor" dangerouslySetInnerHTML={{__html: data?.content}}/>
       </div>
-      <Row type="flex" justify="center" align="middle">
+      <Row type="flex" justify="center" align="middle" style={{marginTop: 12}}>
         <Col>
           <Button type="primary" onClick={() => {props.history.push(`/article/update/${props.match.params.id}`)}}>修改</Button>
         </Col>
       </Row>
-      <Row type="flex" justify="center" align="middle">
+      <Row type="flex" justify="center" align="middle" style={{marginTop: 12}}>
         <Col>
           <QRCode
             id={'qrcode'}

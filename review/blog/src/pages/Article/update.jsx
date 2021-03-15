@@ -136,7 +136,7 @@ const Update = (props) => {
         className="ql-editor"
         style={{backgroundColor: '#f5f5d5'}}
       />
-      <Row type="flex" justify="center" align="middle">
+      <Row type="flex" justify="center" align="middle" style={{marginTop: 12}}>
         <Col>
           <Button onClick={submit}>提交</Button>
         </Col>
