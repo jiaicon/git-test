@@ -2,7 +2,7 @@
  * Created by icon on 2021/3/12
  */
 import React, {useEffect} from 'react';
-import { Card, Button } from 'antd';
+import { Card, Button, Row, Col } from 'antd';
 import { useRequest } from 'ahooks';
 import { articleInfo } from './services';
 import 'react-quill/dist/quill.snow.css';
@@ -46,13 +46,21 @@ const Index = (props) => {
       <div className="ql-container ql-snow">
         <div className="ql-editor" dangerouslySetInnerHTML={{__html: data?.content}}/>
       </div>
-      <Button onClick={() => {props.history.push(`/article/update/${props.match.params.id}`)}}>修改</Button>
-      <QRCode
-        id={'qrcode'}
-        size={200}
-        value={`${window.location.protocol}//${window.location.host}/view/${props.match.params.id}`}
-        onClick={onClick}
-      />
+      <Row type="flex" justify="center" align="middle">
+        <Col>
+          <Button type="primary" onClick={() => {props.history.push(`/article/update/${props.match.params.id}`)}}>修改</Button>
+        </Col>
+      </Row>
+      <Row type="flex" justify="center" align="middle">
+        <Col>
+          <QRCode
+            id={'qrcode'}
+            size={200}
+            value={`${window.location.protocol}//${window.location.host}/view/${props.match.params.id}`}
+            onClick={onClick}
+          />
+        </Col>
+      </Row>
     </Card>
   )
 };

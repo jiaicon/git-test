@@ -49,7 +49,7 @@ const Index = () => {
       title: '操作',
       key: 'operate',
       render: (d, r) => (<Space size="middle">
-        <Link to={`/article/view/${r.id}`} className="ant-dropdown-link">
+        <Link to={`/view/${r.id}`} className="ant-dropdown-link">
           查看
         </Link>
         <Popconfirm

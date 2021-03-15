@@ -2,7 +2,7 @@
  * Created by icon on 2021/3/12
  */
 import React, {useEffect, useState, useRef} from 'react';
-import { Card, Button, Input, message } from 'antd';
+import { Card, Button, Input, message, Row, Col } from 'antd';
 import { MinusOutlined } from '@ant-design/icons';
 import { useRequest } from 'ahooks';
 import uploadImage from '@/utils/uploadImage';
@@ -19,7 +19,7 @@ const Update = (props) => {
     manual: true,
     onSuccess: (result, params) => {
       if (result) {
-        run(props.match.params.id);
+        setValue(result.content);
         message.success('修改成功')
       } else {
         message.error('修改失败')
@@ -136,7 +136,11 @@ const Update = (props) => {
         className="ql-editor"
         style={{backgroundColor: '#f5f5d5'}}
       />
-      <Button onClick={submit}>提交</Button>
+      <Row type="flex" justify="center" align="middle">
+        <Col>
+          <Button onClick={submit}>提交</Button>
+        </Col>
+      </Row>
     </Card>
   )
 };

@@ -1,8 +1,8 @@
 /**
  * Created by icon on 2021/3/12
  */
-import React, {useEffect, useState, useRef} from 'react';
-import { Card, Button, Input, message } from 'antd';
+import React, {useEffect, useRef} from 'react';
+import { Card, Button, Input, message, Row, Col } from 'antd';
 import { useRequest } from 'ahooks';
 import { createArticle } from './services';
 import { history } from "umi";
@@ -120,7 +120,11 @@ const Create = () => {
         formats={formats}
         className=" ql-editor"
       />
-      <Button onClick={submit}>提交</Button>
+      <Row type="flex" justify="center" align="middle">
+        <Col>
+          <Button onClick={submit}>提交</Button>
+        </Col>
+      </Row>
     </Card>
   )
 };
