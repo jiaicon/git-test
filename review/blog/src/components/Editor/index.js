@@ -2,13 +2,14 @@
  * Created by icon on 2021/3/16
  */
 import React, {useEffect, forwardRef, useRef, useImperativeHandle} from 'react';
-import { DashOutlined, MinusOutlined, ColumnHeightOutlined, VerticalAlignMiddleOutlined } from '@ant-design/icons';
+import Icon, { DashOutlined, MinusOutlined, ColumnHeightOutlined, VerticalAlignMiddleOutlined, ToTopOutlined, VerticalAlignBottomOutlined, VerticalAlignTopOutlined } from '@ant-design/icons';
 import ReactQuill, { Quill } from 'react-quill';
 import uploadImage from '@/utils/uploadImage';
 import 'react-quill/dist/quill.core.css';
 import 'react-quill/dist/quill.snow.css';
 import './line';
 import './space';
+import './margin';
 
 const Index = (props, ref) => {
   const { initialValues='' } = props;
@@ -130,11 +131,26 @@ const Index = (props, ref) => {
         <button className="ql-image" />
         <button className="ql-video" />
         <button className="ql-link" />
+
+      </span>
+      <span className="ql-formats">
         <button className="ql-space" value="+1">
           <ColumnHeightOutlined style={{fontSize: 18}} />
         </button>
         <button className="ql-space" value="-1">
-          <VerticalAlignMiddleOutlined style={{fontSize: 18}} />
+          <VerticalAlignMiddleOutlined style={{fontSize: 18, color: '#08c'}} />
+        </button>
+        <button className="ql-margin-top" value="+1">
+          <VerticalAlignTopOutlined style={{fontSize: 18}} />
+        </button>
+        <button className="ql-margin-top" value="-1">
+          <ToTopOutlined style={{fontSize: 18, color: '#08c'}} rotate={180} />
+        </button>
+        <button className="ql-margin-bottom" value="+1">
+          <VerticalAlignBottomOutlined style={{fontSize: 18}} />
+        </button>
+        <button className="ql-margin-bottom" value="-1">
+          <ToTopOutlined style={{fontSize: 18, color: '#08c'}} />
         </button>
       </span>
       <span className="ql-formats">
@@ -175,15 +191,15 @@ const Index = (props, ref) => {
       quillEditor.insertEmbed(range.index, 'image', res);
     }
   };
-  const addSpace = async (v) => {
+  const addSpace = async (v, type) => {
     const quillEditor = quillRef.current.getEditor();
     let range = quillEditor.getSelection();
     let formats = quillEditor.getFormat(range);
-    let space = parseInt(formats.space || 0);
+    let space = parseInt(formats[type] || 0);
     if (v === '+1' || v === '-1') {
       let modifier = (v === '+1') ? 1 : -1;
       if (formats.direction === 'rtl') modifier *= -1;
-      quillEditor.format('space', space + modifier, Quill.sources.USER);
+      quillEditor.format(type, space + modifier, Quill.sources.USER);
     }
   };
   const modules = {
@@ -191,7 +207,15 @@ const Index = (props, ref) => {
       container: "#custom-toolbar",
       handlers: {
         image: imageHandler,
-        space: addSpace,
+        space: (v) => {
+          addSpace(v, 'space');
+        },
+        'margin-top': (v) => {
+          addSpace(v, 'margin-top');
+        },
+        'margin-bottom': (v) => {
+          addSpace(v, 'margin-bottom');
+        },
         'line-solid': (v) => {
           buttonLine(v);
         },
