@@ -51,6 +51,11 @@ export default [
                 component: './Welcome',
               },
               {
+                path: '/editor',
+                authority: ['admin'],
+                component: './Editor',
+              },
+              {
                 path: '/article',
                 name: 'article',
                 icon: 'FileTextOutlined',

@@ -53,7 +53,7 @@ const Create = () => {
       container: [
         [{ 'size': ['small', false, 'large', 'huge'] }], // custom dropdown
         [{ 'font': [] }],
-        [{ 'header': 1 }, { 'header': 2 }],        // custom button values
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],        // custom button values
         ['bold', 'italic', 'underline', 'strike'],    // toggled buttons
         [{ 'align': [] }],
         [{ 'indent': '-1' }, { 'indent': '+1' }],     // outdent/indent
