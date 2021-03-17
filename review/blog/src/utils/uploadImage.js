@@ -14,7 +14,11 @@ const uploadImage = async (formData) => {
     }).then(response => {
       const { status, data, msg } = response;
       if (status === 0) {
-        resolve(`${window.location.protocol}//${window.location.host}${data}`)
+        if (window.apiHost) {
+          resolve(`${window.apiHost}${data}`)
+        } else {
+          resolve(`${window.location.protocol}//${window.location.host}${data}`)
+        }
       } else {
         reject(msg)
       }

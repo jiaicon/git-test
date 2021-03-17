@@ -1,23 +1,32 @@
 /**
  * Created by icon on 2021/3/16
  */
-import React, {useEffect, useState, useRef} from 'react';
-import { Divider, Button, Select } from 'antd';
+import React, {useEffect, forwardRef, useRef, useImperativeHandle} from 'react';
 import { DashOutlined, MinusOutlined, ColumnHeightOutlined, VerticalAlignMiddleOutlined } from '@ant-design/icons';
 import ReactQuill, { Quill } from 'react-quill';
+import uploadImage from '@/utils/uploadImage';
 import 'react-quill/dist/quill.core.css';
 import 'react-quill/dist/quill.snow.css';
 import './line';
 import './space';
 
-const Index = () => {
+const Index = (props, ref) => {
+  const { initialValues='' } = props;
   const quillRef = useRef();
 
+  const getContent = async () => {
+    return new Promise((resolve, reject) => {
+      resolve(quillRef.current.state.value)
+    })
+  };
   useEffect(() => {
     return () => {
 
     }
   }, []);
+  useImperativeHandle(ref, () => ({
+    getContent,
+  }));
   const CustomerToolbar = () => (
     <div id="custom-toolbar">
       <span className="ql-formats">
@@ -143,7 +152,7 @@ const Index = () => {
   );
   const buttonLine = async (v) => {
     const quillEditor = quillRef.current.getEditor();
-    quillEditor.format();
+    quillEditor.format(v);
     const range = quillEditor.getSelection();
     quillEditor.insertEmbed(range.index, v, '');
     quillEditor.setSelection(range.index + 1,range.index + 2, 'silent');
@@ -198,6 +207,7 @@ const Index = () => {
       <ReactQuill
         theme="snow"
         ref={quillRef}
+        value={initialValues}
         modules={{...modules}}
         className=" ql-editor"
       />
@@ -205,5 +215,5 @@ const Index = () => {
   )
 };
 
-export default Index;
+export default forwardRef(Index);
 
