@@ -19,26 +19,27 @@ const Model = {
 
       if (response.status === 0) {
         setAuthority('admin');
+        console.log(response);
         localStorage.setItem('authorization', response.data.token);
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         message.success('🎉 🎉 🎉  登录成功！');
         let { redirect } = params;
 
-        if (redirect) {
-          const redirectUrlParams = new URL(redirect);
-
-          if (redirectUrlParams.origin === urlParams.origin) {
-            redirect = redirect.substr(urlParams.origin.length);
-
-            if (redirect.match(/^\/.*#/)) {
-              redirect = redirect.substr(redirect.indexOf('#') + 1);
-            }
-          } else {
-            window.location.href = '/';
-            return;
-          }
-        }
+        // if (redirect) {
+        //   const redirectUrlParams = new URL(redirect);
+        //
+        //   if (redirectUrlParams.origin === urlParams.origin) {
+        //     redirect = redirect.substr(urlParams.origin.length);
+        //
+        //     if (redirect.match(/^\/.*#/)) {
+        //       redirect = redirect.substr(redirect.indexOf('#') + 1);
+        //     }
+        //   } else {
+        //     window.location.href = '/';
+        //     return;
+        //   }
+        // }
 
         history.replace(redirect || '/');
       }

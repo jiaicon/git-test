@@ -12,7 +12,8 @@ class HomeController extends Controller {
   }
   async home() {
     const { apiHost } = this.app.config;
-    await this.ctx.render('index.html', {
+    console.log(this.app.baseDir);
+    await this.ctx.render('index.ejs', {
       context: JSON.stringify(this.ctx.session.userInfo || null),
       apiHost: JSON.stringify(apiHost || null),
     });

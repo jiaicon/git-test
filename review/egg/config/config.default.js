@@ -52,8 +52,8 @@ module.exports = appInfo => {
     ].join(','),
     mapping: {
       '.ejs': 'ejs',
-      '.njk': 'nunjucks',
-      '.html': 'nunjucks',
+      // '.njk': 'nunjucks',
+      // '.html': 'nunjucks',
     },
   };
   config.jwt = {

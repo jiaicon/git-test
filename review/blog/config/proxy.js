@@ -8,7 +8,7 @@
 export default {
   dev: {
     '/api/': {
-      target: 'http://127.0.0.1:7001',
+      target: 'http://egg.iconmen.top',
       changeOrigin: true,
       pathRewrite: {
         '^': '',
