@@ -24,22 +24,23 @@ const Model = {
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         message.success('🎉 🎉 🎉  登录成功！');
+        console.log(params)
         let { redirect } = params;
 
-        // if (redirect) {
-        //   const redirectUrlParams = new URL(redirect);
-        //
-        //   if (redirectUrlParams.origin === urlParams.origin) {
-        //     redirect = redirect.substr(urlParams.origin.length);
-        //
-        //     if (redirect.match(/^\/.*#/)) {
-        //       redirect = redirect.substr(redirect.indexOf('#') + 1);
-        //     }
-        //   } else {
-        //     window.location.href = '/';
-        //     return;
-        //   }
-        // }
+        if (redirect) {
+          const redirectUrlParams = new URL(redirect);
+
+          if (redirectUrlParams.origin === urlParams.origin) {
+            redirect = redirect.substr(urlParams.origin.length);
+
+            if (redirect.match(/^\/.*#/)) {
+              redirect = redirect.substr(redirect.indexOf('#') + 1);
+            }
+          } else {
+            window.location.href = '/';
+            return;
+          }
+        }
 
         history.replace(redirect || '/');
       }

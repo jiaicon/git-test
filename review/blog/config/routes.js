@@ -90,6 +90,40 @@ export default [
                 ]
               },
               {
+                path: '/essay',
+                name: 'article',
+                icon: 'FileTextOutlined',
+                authority: ['admin'],
+                routes: [
+                  {
+                    path: '/essay',
+                    redirect: '/essay/list'
+                  },
+                  {
+                    path: '/essay/list',
+                    name: 'list',
+                    component: './Essay/list',
+                    authority: ['admin'],
+                  },
+                  {
+                    path: '/essay/view/:id',
+                    component: './Essay/view',
+                    authority: ['admin'],
+                  },
+                  {
+                    path: '/essay/create',
+                    name: 'create',
+                    component: './Essay/create',
+                    authority: ['admin'],
+                  },
+                  {
+                    path: '/essay/update/:id',
+                    component: './Essay/update',
+                    authority: ['admin'],
+                  }
+                ]
+              },
+              {
                 path: '/users',
                 name: 'user',
                 icon: 'user',

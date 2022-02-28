@@ -4,7 +4,7 @@ import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 import routes from './routes';
 const { REACT_APP_ENV } = process.env;
-const publicPath = './../egg/app/view/dist/';
+
 export default defineConfig({
   hash: true,
   antd: {},
@@ -39,6 +39,7 @@ export default defineConfig({
   manifest: {
     basePath: '/',
   },
-  outputPath: publicPath,
+  outputPath: './../egg/app/public/dist/',
+  publicPath: '/public/dist/',
   esbuild: {},
 });

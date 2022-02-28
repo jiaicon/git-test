@@ -48,7 +48,7 @@ module.exports = appInfo => {
   };
   config.view = {
     root: [
-      path.join(appInfo.baseDir, 'app/view/dist'),
+      path.join(appInfo.baseDir, 'app/view'),
     ].join(','),
     mapping: {
       '.ejs': 'ejs',
@@ -60,6 +60,8 @@ module.exports = appInfo => {
     secret: '19940401',
     expiresIn: '1800s',
   };
+
+  config.root = path.join(__dirname, './../app/public');
 
   return {
     ...config,
